@@ -11,6 +11,4 @@
 .idea/modules.xml
 .idea/workspace.xml
 hibernate-project.iml
-pom.xml
-src/
 target/
