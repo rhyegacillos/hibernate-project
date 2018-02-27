@@ -37,4 +37,7 @@ public class User {
 
     @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
+
+    @Transient
+    private boolean valid;
 }
