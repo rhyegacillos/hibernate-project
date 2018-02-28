@@ -1,6 +1,7 @@
 package com.hibernate.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -38,6 +39,6 @@ public class User {
     @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
 
-    @Transient
-    private boolean valid;
+    @Formula("lower(datediff(curdate(), birth_date)/365)")
+    private int age;
 }
