@@ -3,6 +3,8 @@ package com.hibernate.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Data
@@ -36,6 +38,11 @@ public class Bank {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "CREATED_DATE")
     private Date createdDate;
+
+    @ElementCollection
+    @CollectionTable(name = "BANK_CONTACT", joinColumns = @JoinColumn(name = "BANK_ID"))
+    @Column(name = "NAME")
+    private Collection<String> contacts = new ArrayList<>();
 
 
 

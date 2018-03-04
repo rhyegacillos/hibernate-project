@@ -35,6 +35,7 @@ public class UserApp {
             address.setState("PA");
             address.setZipCode("12345");
 
+
             user.setAddress(address);
             session.save(user);
 
