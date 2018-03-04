@@ -35,8 +35,16 @@ public class UserApp {
             address.setState("PA");
             address.setZipCode("12345");
 
+            Address address1 = new Address();
 
-            user.setAddress(address);
+            address1.setAddressLine1("line 3");
+            address1.setAddressLine2("line 4");
+            address1.setCity("New York");
+            address1.setState("NY");
+            address1.setZipCode("78345");
+
+            user.getAddress().add(address);
+            user.getAddress().add(address1);
             session.save(user);
 
             transaction.commit();

@@ -4,7 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity(name = "FINANCES_USER")
@@ -42,8 +44,9 @@ public class User {
     @Formula("lower(datediff(curdate(), birth_date)/365)")
     private int age;
 
-    @Embedded
+    @ElementCollection
+    @CollectionTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
     @AttributeOverrides({@AttributeOverride(name = "addressLine1", column = @Column(name = "USER_ADDRESS_LINE_1")),
             @AttributeOverride(name = "addressLine2", column = @Column(name = "USER_ADDRESS_LINE_2"))})
-    private Address address;
+    private List<Address> address = new ArrayList<>();
 }
