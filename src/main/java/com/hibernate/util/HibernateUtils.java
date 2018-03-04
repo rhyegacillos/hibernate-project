@@ -1,6 +1,7 @@
 package com.hibernate.util;
 
 import com.hibernate.entity.AccountType;
+import com.hibernate.entity.Bank;
 import com.hibernate.entity.TimeTest;
 import com.hibernate.entity.User;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ public class HibernateUtils {
             configuration.addAnnotatedClass(User.class);
             configuration.addAnnotatedClass(TimeTest.class);
             configuration.addAnnotatedClass(AccountType.class);
+            configuration.addAnnotatedClass(Bank.class);
             return configuration.buildSessionFactory(new StandardServiceRegistryBuilder().build());
         } catch (Exception e) {
             e.printStackTrace();
