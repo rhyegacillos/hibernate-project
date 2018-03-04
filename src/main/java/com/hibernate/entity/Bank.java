@@ -3,9 +3,7 @@ package com.hibernate.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @Entity(name = "BANK")
@@ -41,8 +39,9 @@ public class Bank {
 
     @ElementCollection
     @CollectionTable(name = "BANK_CONTACT", joinColumns = @JoinColumn(name = "BANK_ID"))
+    @MapKeyColumn(name = "POSITION_TYPE")
     @Column(name = "NAME")
-    private Collection<String> contacts = new ArrayList<>();
+    private Map<String, String> contacts = new HashMap<>();
 
 
 
