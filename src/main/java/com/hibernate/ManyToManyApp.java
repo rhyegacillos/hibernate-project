@@ -25,8 +25,14 @@ public class ManyToManyApp {
             account.getUsers().add(user);
             account.getUsers().add(user2);
 
+            user.getAccounts().add(account);
+            user.getAccounts().add(account2);
+
             account2.getUsers().add(user);
             account2.getUsers().add(user2);
+
+            user2.getAccounts().add(account);
+            user2.getAccounts().add(account2);
 
             session.save(account);
             session.save(account2);

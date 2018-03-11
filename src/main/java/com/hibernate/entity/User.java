@@ -19,6 +19,9 @@ public class User {
     @Column(name = "USER_ID")
     private Long userId;
 
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private List<Account> accounts = new ArrayList<>();
+
     @OneToOne(mappedBy = "user")
     private Credential credential;
 
