@@ -1,11 +1,13 @@
 package com.hibernate.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Data
 @Entity(name = "CREDENTIAL")
+@EqualsAndHashCode(exclude="user")
 public class Credential {
 
     @Id

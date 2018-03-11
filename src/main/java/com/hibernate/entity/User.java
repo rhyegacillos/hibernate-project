@@ -1,6 +1,7 @@
 package com.hibernate.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@EqualsAndHashCode(exclude="credential")
 @Entity(name = "FINANCES_USER")
 public class User {
 

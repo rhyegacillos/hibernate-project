@@ -4,9 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Entity(name = "ACCOUNT")
@@ -17,8 +15,11 @@ public class Account {
     @Column(name = "ACCOUNT_ID")
     private Long id;
 
-//    @Column(Bank)
-//    private int bankId;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ACCOUNT",
+                joinColumns = @JoinColumn(name = "ACCOUNT_ID"),
+                inverseJoinColumns = @JoinColumn(name = "USER_ID"))
+    private List<User> users = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     List<Transaction> transactions = new ArrayList<>();

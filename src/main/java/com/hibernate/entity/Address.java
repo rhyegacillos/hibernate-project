@@ -25,4 +25,7 @@ public class Address {
     @Column(name = "ZIP_CODE")
     private String zipCode;
 
+    @Column(name = "ADDRESS_TYPE")
+    private String addressType;
+
 }
