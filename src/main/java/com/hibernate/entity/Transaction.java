@@ -16,6 +16,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "ACCOUNT_ID")
+    private Account account;
+
     @Column(name = "TITLE")
     private String title;
 
