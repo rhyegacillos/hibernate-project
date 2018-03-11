@@ -19,6 +19,7 @@ public class HibernateUtils {
             configuration.addAnnotatedClass(Credential.class);
             configuration.addAnnotatedClass(Account.class);
             configuration.addAnnotatedClass(Transaction.class);
+            configuration.addAnnotatedClass(Budget.class);
             return configuration.buildSessionFactory(new StandardServiceRegistryBuilder().build());
         } catch (Exception e) {
             e.printStackTrace();
