@@ -1,6 +1,7 @@
-package com.hibernate;
+package com.hibernate.hibernateApps;
 
 import com.hibernate.entity.Account;
+import com.hibernate.entity.Budget;
 import com.hibernate.entity.Transaction;
 import com.hibernate.util.HibernateUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Slf4j
-public class ManyToOneApp {
+public class JoinTableApp {
 
     public static void main(String[] args) {
         Session session = HibernateUtils.getSessionFactory().openSession();
@@ -19,14 +20,16 @@ public class ManyToOneApp {
             org.hibernate.Transaction transaction = session.beginTransaction();
 
             Account account = createNewAccount();
-            account.getTransactions().add(createNewBeltPurchase(account));
-            account.getTransactions().add(createShoePurchase(account));
-            session.save(account);
+            Budget budget = new Budget();
+            budget.setGoalAmount(new BigDecimal("10000.00"));
+            budget.setName("Emergency Fund");
+            budget.setPeriod("Yearly");
+            budget.getTransactions().add(createNewBeltPurchase(account));
+            budget.getTransactions().add(createShoePurchase(account));
+
+            session.save(budget);
 
             transaction.commit();
-
-            Transaction getTransaction = session.get(Transaction.class, account.getTransactions().get(0).getId());
-            log.info("Account name: " + getTransaction.getAccount().getName());
 
         } catch (Exception e) {
             e.printStackTrace();

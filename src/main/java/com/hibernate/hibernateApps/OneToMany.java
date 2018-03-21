@@ -1,17 +1,14 @@
-package com.hibernate;
+package com.hibernate.hibernateApps;
 
 import com.hibernate.entity.Account;
-import com.hibernate.entity.Budget;
 import com.hibernate.entity.Transaction;
 import com.hibernate.util.HibernateUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Slf4j
-public class JoinTableApp {
+public class OneToMany {
 
     public static void main(String[] args) {
         Session session = HibernateUtils.getSessionFactory().openSession();
@@ -20,16 +17,12 @@ public class JoinTableApp {
             org.hibernate.Transaction transaction = session.beginTransaction();
 
             Account account = createNewAccount();
-            Budget budget = new Budget();
-            budget.setGoalAmount(new BigDecimal("10000.00"));
-            budget.setName("Emergency Fund");
-            budget.setPeriod("Yearly");
-            budget.getTransactions().add(createNewBeltPurchase(account));
-            budget.getTransactions().add(createShoePurchase(account));
-
-            session.save(budget);
+            account.getTransactions().add(createNewBeltPurchase());
+            account.getTransactions().add(createShoePurchase());
+            session.save(account);
 
             transaction.commit();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,9 +33,8 @@ public class JoinTableApp {
 
     }
 
-    private static Transaction createNewBeltPurchase(Account account) {
+    private static Transaction createNewBeltPurchase() {
         Transaction beltPurchase = new Transaction();
-        beltPurchase.setAccount(account);
         beltPurchase.setTitle("Dress Belt");
         beltPurchase.setAmount(new BigDecimal("50.00"));
         beltPurchase.setClosingBalance(new BigDecimal("0.00"));
@@ -56,9 +48,8 @@ public class JoinTableApp {
         return beltPurchase;
     }
 
-    private static Transaction createShoePurchase(Account account) {
+    private static Transaction createShoePurchase() {
         Transaction shoePurchase = new Transaction();
-        shoePurchase.setAccount(account);
         shoePurchase.setTitle("Work Shoes");
         shoePurchase.setAmount(new BigDecimal("100.00"));
         shoePurchase.setClosingBalance(new BigDecimal("0.00"));

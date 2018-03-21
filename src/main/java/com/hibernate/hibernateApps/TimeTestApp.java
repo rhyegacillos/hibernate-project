@@ -1,4 +1,4 @@
-package com.hibernate;
+package com.hibernate.hibernateApps;
 
 import com.hibernate.entity.TimeTest;
 import com.hibernate.util.HibernateUtils;
